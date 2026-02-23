@@ -2,14 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #__next {
+:root {
+  /* Light Mode */
+  --background: 248 250 252;
+  /* Slate-50 */
+  --text-main: 15 23 42;
+  /* Slate-900 */
+  --text-muted: 100 116 139;
+  /* Slate-500 */
+  --card-bg: 255 255 255;
+  /* White */
+  --primary: 249 115 22;
+  /* Orange-500 */
+}
+
+.dark {
+  /* Dark Mode */
+  --background: 15 23 42;
+  /* #0F172A */
+  --text-main: 243 244 246;
+  /* #F3F4F6 */
+  --text-muted: 156 163 175;
+  /* #9CA3AF */
+  --card-bg: 30 41 59;
+  /* #1E293B */
+  --primary: 249 115 22;
+  /* #F97316 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#__next {
   height: 100%;
 }
 
 body {
-  @apply bg-background text-text-main;
+  @apply bg-background text-text-main transition-colors duration-500 ease-in-out;
+}
+
+/* Ensure smooth transition for cards and sections */
+section,
+article,
+div,
+header,
+footer {
+  @apply transition-colors duration-500 ease-in-out;
+}
+
+.cursor-none {
+  cursor: none !important;
+}
+
+.cursor-none * {
+  cursor: none !important;
+}
+
+@keyframes aurora-text {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.aurora-text {
+  background: linear-gradient(270deg,
+      rgb(var(--primary)),
+      #f97316,
+      #a855f7,
+      #6366f1,
+      rgb(var(--primary)));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: aurora-text 8s linear infinite;
 }
 
 .container {
-  max-width: 1200px; /* Wider for the modern layout */
+  max-width: 1200px;
+  /* Wider for the modern layout */
 }

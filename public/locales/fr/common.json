@@ -1,0 +1,82 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "skills": "Compétences",
+        "projects": "Projets",
+        "contact": "Contact"
+    },
+    "hero": {
+        "greeting": "Hello",
+        "intro": "Je suis Yann Miambanzila",
+        "role": "Développeur web | Automatisation & IA",
+        "cta_project": "Proposer un projet",
+        "cta_cv": "Mon CV"
+    },
+    "about": {
+        "title": "À propos de moi",
+        "description": "J'ai commencé mon parcours logiciel par la photographie. À travers cela, j'ai appris le processus de création à partir de zéro. Depuis, cela m'a conduit au développement logiciel car cela comble mon amour pour l'apprentissage et la construction de choses.",
+        "web_dev": "Développement Web",
+        "web_dev_desc": "Création de sites modernes et responsives.",
+        "mobile_apps": "Applications Mobiles",
+        "mobile_apps_desc": "Des expériences fluides sur iOS et Android.",
+        "hosting": "Hébergement",
+        "hosting_desc": "Solutions cloud sécurisées et rapides.",
+        "stats": {
+            "projects": "Projets terminés",
+            "satisfaction": "Satisfaction client",
+            "experience": "Années d'expérience"
+        }
+    },
+    "projects": {
+        "title": "Mes Projets",
+        "subtitle": "Une sélection de mes travaux récents, allant d'applications complexes aux designs épurés.",
+        "view_project": "Voir le projet",
+        "list": {
+            "aura": {
+                "title": "AURA App",
+                "desc": "Compagnon d'apprentissage intelligent fusionnant psychologie cognitive et IA pour réduire la charge mentale des étudiants."
+            },
+            "chat_vera": {
+                "title": "Chat with Vera (Back-end)",
+                "desc": "Architecture robuste basée sur NestJS pour une application de chat performante et scalable."
+            },
+            "neumorphic": {
+                "title": "Neumorphic UI Design",
+                "desc": "Interfaces modernes utilisant le style Neumorphic implémenté en CSS pur."
+            },
+            "next_lab": {
+                "title": "Next.js Advanced Lab",
+                "desc": "Série de TP et explorations approfondies sur les fonctionnalités de Next.js et React."
+            },
+            "django_collection": {
+                "title": "Django Collection",
+                "desc": "Ensemble de composants et projets back-end développés avec le framework Django."
+            },
+            "python_lab": {
+                "title": "Python Technical Lab",
+                "desc": "Projets de démonstration de concepts avancés et algorithmes en Python."
+            }
+        }
+    },
+    "skills": {
+        "title": "Compétences Techniques",
+        "subtitle": "Les technologies que j'utilise pour donner vie à vos idées.",
+        "languages": "Langages",
+        "frameworks": "Frameworks & Outils"
+    },
+    "contact": {
+        "title": "Travaillons ensemble",
+        "subtitle": "Vous avez un projet en tête ou vous voulez simplement dire bonjour ? N'hésitez pas à me contacter.",
+        "name": "Nom",
+        "name_placeholder": "Votre nom",
+        "email": "Email",
+        "email_placeholder": "votre@email.com",
+        "message": "Message",
+        "message_placeholder": "Comment puis-je vous aider ?",
+        "submit": "Envoyer le message"
+    },
+    "footer": {
+        "rights": "Tous droits réservés."
+    }
+}

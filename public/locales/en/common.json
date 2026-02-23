@@ -1,0 +1,82 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "skills": "Skills",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "hero": {
+        "greeting": "Hello",
+        "intro": "I'm Yann Miambanzila",
+        "role": "Web Developer | Automation & AI",
+        "cta_project": "Start a project",
+        "cta_cv": "My Resume"
+    },
+    "about": {
+        "title": "About Me",
+        "description": "I started my software journey through photography. Through that, I learned the process of creating from scratch. Since then, it has led me to software development as it fulfills my love for learning and building things.",
+        "web_dev": "Web Development",
+        "web_dev_desc": "Creating modern and responsive websites.",
+        "mobile_apps": "Mobile Applications",
+        "mobile_apps_desc": "Fluid experiences on iOS and Android.",
+        "hosting": "Hosting",
+        "hosting_desc": "Secure and fast cloud solutions.",
+        "stats": {
+            "projects": "Projects Completed",
+            "satisfaction": "Client Satisfaction",
+            "experience": "Years of Experience"
+        }
+    },
+    "projects": {
+        "title": "My Projects",
+        "subtitle": "A selection of my recent work, ranging from complex applications to sleek designs.",
+        "view_project": "View Project",
+        "list": {
+            "aura": {
+                "title": "AURA App",
+                "desc": "Intelligent learning companion merging cognitive psychology and AI to reduce cognitive load for students."
+            },
+            "chat_vera": {
+                "title": "Chat with Vera (Back-end)",
+                "desc": "Robust architecture based on NestJS for a high-performance and scalable chat application."
+            },
+            "neumorphic": {
+                "title": "Neumorphic UI Design",
+                "desc": "Modern interfaces using Neumorphic style implemented in pure CSS."
+            },
+            "next_lab": {
+                "title": "Next.js Advanced Lab",
+                "desc": "Series of labs and in-depth explorations on Next.js and React features."
+            },
+            "django_collection": {
+                "title": "Django Collection",
+                "desc": "Set of back-end components and projects developed with the Django framework."
+            },
+            "python_lab": {
+                "title": "Python Technical Lab",
+                "desc": "Project demonstrating advanced concepts and algorithms in Python."
+            }
+        }
+    },
+    "skills": {
+        "title": "Technical Skills",
+        "subtitle": "The technologies I use to bring your ideas to life.",
+        "languages": "Languages",
+        "frameworks": "Frameworks & Tools"
+    },
+    "contact": {
+        "title": "Let's Work Together",
+        "subtitle": "Have a project in mind or just want to say hi? Feel free to contact me.",
+        "name": "Name",
+        "name_placeholder": "Your Name",
+        "email": "Email",
+        "email_placeholder": "your@email.com",
+        "message": "Message",
+        "message_placeholder": "How can I help you?",
+        "submit": "Send Message"
+    },
+    "footer": {
+        "rights": "All rights reserved."
+    }
+}
