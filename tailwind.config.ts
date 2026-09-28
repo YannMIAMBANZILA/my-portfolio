@@ -9,13 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-    background: "var(--background)",
-    foreground: "var(--foreground)",
-    // Couleurs inspirées de ton design Behance
-    primary: "#6366f1", // Un violet indigo
-    secondary: "#1e293b", // Un gris ardoise foncé
-    dark: "#0f172a", // Le fond très sombre
-  },
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        primary: "#E82127", // Tesla Red
+        secondary: "#111111", // Dark dashboard gray
+        dark: "#000000", // Pure black for OLED feel
+        accent: "#38bdf8", // Electric blue for data/HUD elements
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-roboto-mono)", "monospace"], // For data/metrics
+      },
     },
   },
   plugins: [],

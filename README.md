@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yann MIAMBANZILA - Portfolio 🚀
 
-## Getting Started
+Un portfolio de développeur moderne, immersif et interactif construit avec Next.js, React Three Fiber, Tailwind CSS et Framer Motion. 
 
-First, run the development server:
+Ce projet se distingue par une interface utilisateur (UI) ultra-minimaliste inspirée des interfaces automobiles futuristes (style Tesla / HUD) et une expérience de navigation 3D pilotée par le scroll.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Fonctionnalités Principales
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Expérience 3D Immersive** : Une route 3D profilée générée avec `@react-three/fiber` et `drei`.
+- **Navigation au Scroll (Scroll-driven)** : L'avancement de la voiture et l'apparition des éléments du décor sont directement synchronisés avec le scroll de l'utilisateur grâce à `framer-motion`.
+- **Panneaux Dynamiques (Overhead Signs)** : Les sections du portfolio (À propos, Projets, Contact) sont présentées sur des portiques autoroutiers interactifs.
+- **HUD Sidebar (Tesla-style)** : Une barre de navigation latérale ultra-minimaliste permettant un déplacement automatique et fluide (smooth scroll) vers n'importe quelle section.
+- **Interface Glassmorphism** : Boutons de contrôle (Multilingue, Dark Mode) avec un effet de verre dépoli haut de gamme.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Stack Technique
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework** : [Next.js](https://nextjs.org/) (App Router)
+- **3D & Animation** : [React Three Fiber](https://r3f.docs.pmnd.rs/), [Framer Motion](https://www.framer.com/motion/)
+- **Styling** : [Tailwind CSS](https://tailwindcss.com/)
+- **Langage** : TypeScript
 
-## Learn More
+## 🚀 Installation & Lancement
 
-To learn more about Next.js, take a look at the following resources:
+1. Clonez le dépôt :
+   ```bash
+   git clone <votre-url-de-repo>
+   ```
+2. Installez les dépendances :
+   ```bash
+   npm install
+   ```
+3. Lancez le serveur de développement :
+   ```bash
+   npm run dev
+   ```
+4. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👨‍💻 À propos de l'auteur
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Yann MIAMBANZILA** - Développeur Web, Automatisation & IA.

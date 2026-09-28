@@ -2,13 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth; /* Pour le défilement fluide */
+@layer base {
+  :root {
+    --background: #d8d8d8; /* Gris clair typique de l'autopilot */
+    --foreground: #333333;
+  }
 }
 
-/* On force une hauteur minime pour que le footer reste en bas si peu de contenu */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* On cache la scrollbar pour renforcer l'immersion */
+::-webkit-scrollbar {
+  display: none;
 }
