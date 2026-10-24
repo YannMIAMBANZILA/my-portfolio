@@ -2,40 +2,11 @@
 
 import { Canvas } from '@react-three/fiber'
 import { Environment, ContactShadows } from '@react-three/drei'
-import { motion, useScroll, useTransform, MotionValue, useMotionValueEvent } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { useRef, useState } from 'react'
 
-// --- MODÈLE VOITURE 3D ---
-function CarModel() {
-  return (
-    <group>
-      <mesh position={[0, 0.4, 0]} castShadow>
-        <boxGeometry args={[1.8, 0.6, 4]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.2} metalness={0.1} />
-      </mesh>
-      <mesh position={[0, 0.9, -0.2]} castShadow>
-        <boxGeometry args={[1.4, 0.5, 2]} />
-        <meshStandardMaterial color="#111111" roughness={0.1} metalness={0.8} />
-      </mesh>
-      {[-1, 1].map((x) => 
-        [-1.2, 1.2].map((z) => (
-          <mesh key={`wheel-${x}-${z}`} position={[x, 0.3, z]} rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.35, 0.35, 0.2, 32]} />
-            <meshStandardMaterial color="#222" roughness={0.8} />
-          </mesh>
-        ))
-      )}
-      <mesh position={[-0.6, 0.5, 2.01]}>
-        <boxGeometry args={[0.4, 0.1, 0.05]} />
-        <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={2} />
-      </mesh>
-      <mesh position={[0.6, 0.5, 2.01]}>
-        <boxGeometry args={[0.4, 0.1, 0.05]} />
-        <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={2} />
-      </mesh>
-    </group>
-  )
-}
+import { CarModel } from '@/components/3d/CarModel'
+import { RoadSign } from '@/components/ui/RoadSign'
 
 // --- DONNÉES DES SECTIONS DU PORTFOLIO ---
 const SECTIONS = [
@@ -44,91 +15,6 @@ const SECTIONS = [
   { id: 3, title: "MES PROJETS", subtitle: "PORTFOLIO & RÉALISATIONS", status: "SECTION 03" },
   { id: 4, title: "CONTACT", subtitle: "TRAVAILLONS ENSEMBLE", status: "SECTION 04" },
 ]
-
-// --- COMPOSANT PANNEAU GÉANT (PORTIQUE D'AUTOROUTE / MATRICE LED) ---
-function OverheadSign({ project, progress, index }: { project: any, progress: MotionValue<number>, index: number }) {
-  // Séparation stricte : chaque projet prend 25% du scroll
-  const start = index * 0.25
-  const end = start + 0.25
-  
-  // Le panneau traverse l'écran de l'horizon jusqu'à derrière la caméra
-  const topPosition = useTransform(progress, [start, end], ["-10%", "150%"])
-  
-  // Gestion de l'opacité : Invisible avant son tour pour éviter qu'il n'attende à l'horizon !
-  // Fade-in rapide au début de son intervalle, fade-out rapide à la fin
-  const opacity = useTransform(
-    progress,
-    [start - 0.02, start + 0.02, end - 0.05, end],
-    [0, 1, 1, 0]
-  )
-
-  return (
-    <motion.div
-      style={{
-        position: 'absolute',
-        top: topPosition,
-        // On écarte le conteneur pour que les poteaux soient dans l'herbe/en dehors de la route
-        left: '-15%', 
-        width: '130%',
-        transform: 'translateY(-100%) rotateX(-75deg)',
-        transformOrigin: 'bottom center',
-        opacity: opacity,
-        zIndex: 10
-      }}
-      className="flex flex-col items-center"
-    >
-      {/* Panneau principal hyper-réaliste */}
-      <div className="relative flex flex-col bg-[#050505] border-[16px] border-[#151515] rounded-xl shadow-[0_40px_100px_rgba(0,0,0,0.9)] overflow-hidden w-[90%] max-w-[1000px] z-20" style={{ borderTopWidth: '24px' }}>
-        
-        {/* Bandeau métallique supérieur de protection */}
-        <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-b from-gray-600 to-gray-800 border-b border-gray-900"></div>
-
-        {/* Effet matrice de LED réaliste (Points + Scanlines épaisses) */}
-        <div className="absolute inset-0 bg-[radial-gradient(#f9731655_2px,transparent_2px)] [background-size:6px_6px] pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_3px,rgba(0,0,0,0.9)_3px,rgba(0,0,0,0.9)_6px)] pointer-events-none opacity-80"></div>
-        
-        {/* En-tête style Gare / Info Trafic */}
-        <div className="relative z-10 flex justify-between items-center px-6 md:px-10 pt-8 pb-3 border-b-2 border-orange-500/20 bg-black/40">
-          <div className="font-mono text-orange-500/80 text-xs md:text-sm tracking-widest flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-            {project.status}
-          </div>
-          <div className="font-mono text-orange-500/80 text-xs md:text-sm tracking-widest">
-            {project.id}/04
-          </div>
-        </div>
-
-        {/* Contenu textuel avec hauteur augmentée (plus massif) */}
-        <div className="relative z-10 px-6 md:px-10 py-16 md:py-24 flex flex-col items-center justify-center text-center w-full min-h-[300px] md:min-h-[400px]">
-          <div className="font-sans text-orange-500 text-3xl md:text-6xl font-black tracking-widest uppercase mb-8 leading-tight" style={{ textShadow: '0 0 10px #f97316, 0 0 20px #f97316' }}>
-            {project.title}
-          </div>
-          <div className="flex items-center gap-4 md:gap-8 mt-auto">
-            <span className="font-mono text-orange-400 text-sm md:text-2xl font-bold tracking-[0.1em] bg-[#111] px-5 py-3 rounded border border-orange-500/30">
-              {project.subtitle}
-            </span>
-          </div>
-        </div>
-        
-        {/* Reflet sur l'écran vitré */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none"></div>
-      </div>
-
-      {/* Structure du Portique (Treillis métallique) */}
-      <div className="flex justify-between w-[85%] max-w-[920px] -mt-2">
-        {/* Pilier Gauche : Écarté de la route, et TRÈS haut pour passer au-dessus de la caméra */}
-        <div className="relative w-12 md:w-20 h-[65vh] bg-gradient-to-r from-gray-700 via-gray-400 to-gray-800 shadow-[20px_20px_50px_rgba(0,0,0,0.8)] border-x-[6px] border-gray-900 flex flex-col justify-between py-12 rounded-b-lg">
-          {[1,2,3,4,5,6,7,8].map(i => <div key={i} className="w-full h-3 bg-gray-900/60 rotate-45"></div>)}
-        </div>
-        
-        {/* Pilier Droit */}
-        <div className="relative w-12 md:w-20 h-[65vh] bg-gradient-to-r from-gray-700 via-gray-400 to-gray-800 shadow-[-20px_20px_50px_rgba(0,0,0,0.8)] border-x-[6px] border-gray-900 flex flex-col justify-between py-12 rounded-b-lg">
-           {[1,2,3,4,5,6,7,8].map(i => <div key={i} className="w-full h-3 bg-gray-900/60 -rotate-45"></div>)}
-        </div>
-      </div>
-    </motion.div>
-  )
-}
 
 // --- SCÈNE PRINCIPALE ---
 export function Hero() {
@@ -206,7 +92,7 @@ export function Hero() {
 
             {/* Panneaux de projets générés dynamiquement */}
             {SECTIONS.map((section, index) => (
-              <OverheadSign key={section.id} project={section} progress={scrollYProgress} index={index} />
+              <RoadSign key={section.id} project={section} progress={scrollYProgress} index={index} />
             ))}
 
           </div>
