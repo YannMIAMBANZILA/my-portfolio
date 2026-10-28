@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -25,4 +23,53 @@ body {
 /* On cache la scrollbar pour renforcer l'immersion */
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* Bascule responsive garantie Mobile / Desktop */
+@media (max-width: 767px) {
+  .floating-navbar-container {
+    top: auto !important;
+    bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
+  }
+  .nav-desktop-view {
+    display: none !important;
+  }
+  .nav-mobile-view {
+    display: flex !important;
+  }
+  .logo-text-desktop {
+    display: none !important;
+  }
+  .burger-desktop-only {
+    display: none !important;
+  }
+  .burger-mobile-only {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .floating-navbar-container {
+    top: 0 !important;
+    bottom: auto !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 0 !important;
+  }
+  .nav-desktop-view {
+    display: flex !important;
+  }
+  .nav-mobile-view {
+    display: none !important;
+  }
+  .logo-text-desktop {
+    display: inline !important;
+  }
+  .burger-desktop-only {
+    display: flex !important;
+  }
+  .burger-mobile-only {
+    display: none !important;
+  }
 }

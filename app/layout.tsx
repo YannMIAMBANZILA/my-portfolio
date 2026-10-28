@@ -21,7 +21,7 @@ export default function RootLayout({
         {/* Le ThemeProvider permet de gérer le mode sombre sur tout le site */}
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
