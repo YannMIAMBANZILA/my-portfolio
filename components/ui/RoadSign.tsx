@@ -38,7 +38,7 @@ export function RoadSign({ project, progress, index }: RoadSignProps) {
         top: topPosition,
         left: "-15%",
         width: "130%",
-        transform: "translateY(-100%) rotateX(-75deg)",
+        transform: "translateY(-100%) rotateX(-79deg)",
         transformOrigin: "bottom center",
         opacity: opacity,
         zIndex: 10,

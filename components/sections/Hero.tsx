@@ -1,5 +1,6 @@
 "use client"
 
+import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
 import { Environment, ContactShadows } from '@react-three/drei'
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
@@ -97,23 +98,47 @@ export function Hero() {
               alignItems: 'flex-end',
             }}
           >
-            {/* Plan de la route incliné */}
+            {/* Plan de la route incliné avec perspective plus basse et effet verre glossy */}
             <div
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '800px',
+                maxWidth: '920px',
                 height: '250vh',
-                transform: 'rotateX(75deg)',
+                transform: 'rotateX(79deg)',
                 transformOrigin: 'bottom center',
                 transformStyle: 'preserve-3d',
-                borderLeft: '10px solid #94a3b8',
-                borderRight: '10px solid #94a3b8',
-                background: 'linear-gradient(to bottom, #dbe1e8 0%, #cbd5e1 50%, #94a3b8 100%)',
-                boxShadow: '0 0 50px rgba(0,0,0,0.15)',
+                borderLeft: '2px solid rgba(255, 255, 255, 0.65)',
+                borderRight: '2px solid rgba(255, 255, 255, 0.65)',
+                background: 'linear-gradient(to bottom, #d5dde8 0%, #c4cfde 35%, #b1c0d4 70%, #9cb1c9 100%)',
+                boxShadow: '0 0 60px rgba(148, 163, 184, 0.25), inset 0 0 80px rgba(255, 255, 255, 0.35)',
               }}
             >
-              {/* Lignes pointillées liées EXCLUSIVEMENT au scroll */}
+              {/* Liseré néon glossy supplémentaire sur les bords extérieurs */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  width: '1px',
+                  background: 'linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2))',
+                  boxShadow: '0 0 8px rgba(255, 255, 255, 0.8)',
+                }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  right: 0,
+                  width: '1px',
+                  background: 'linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2))',
+                  boxShadow: '0 0 8px rgba(255, 255, 255, 0.8)',
+                }}
+              />
+
+              {/* Lignes pointillées centrales ultra-fines (3px) reliées au scroll */}
               <motion.div
                 style={{
                   position: 'absolute',
@@ -121,10 +146,11 @@ export function Hero() {
                   bottom: 0,
                   left: '33.33%',
                   transform: 'translateX(-50%)',
-                  width: '10px',
-                  backgroundImage: 'linear-gradient(to bottom, #64748b 50%, transparent 50%)',
-                  backgroundSize: '100% 200px',
+                  width: '3px',
+                  backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 50%, transparent 50%)',
+                  backgroundSize: '100% 160px',
                   backgroundPositionY: useTransform(scrollYProgress, [0, 1], ["0px", "5000px"]),
+                  filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.5))',
                 }}
               />
               <motion.div
@@ -134,10 +160,11 @@ export function Hero() {
                   bottom: 0,
                   left: '66.66%',
                   transform: 'translateX(-50%)',
-                  width: '10px',
-                  backgroundImage: 'linear-gradient(to bottom, #64748b 50%, transparent 50%)',
-                  backgroundSize: '100% 200px',
+                  width: '3px',
+                  backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 50%, transparent 50%)',
+                  backgroundSize: '100% 160px',
                   backgroundPositionY: useTransform(scrollYProgress, [0, 1], ["0px", "5000px"]),
+                  filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.5))',
                 }}
               />
 
@@ -148,30 +175,48 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Voiture 3D au centre parfait */}
+          {/* Voiture 3D au centre parfait avec rendu ultra-net haute définition */}
           <div
             className="car-container"
             style={{
               position: 'absolute',
-              bottom: '5%',
+              bottom: '4%',
               left: 0,
               right: 0,
               margin: '0 auto',
               width: '100%',
-              maxWidth: '500px',
-              height: '400px',
+              maxWidth: '680px',
+              height: '520px',
               pointerEvents: 'none',
               zIndex: 20,
             }}
           >
-            <Canvas camera={{ position: [0, 5, -9], fov: 35 }}>
-              <ambientLight intensity={0.8} />
-              <directionalLight position={[10, 10, -5]} intensity={2} castShadow />
+            <Canvas
+              camera={{ position: [0, 4.2, -10], fov: 30 }}
+              dpr={[1.5, 3]}
+              gl={{
+                antialias: true,
+                powerPreference: 'high-performance',
+                toneMapping: THREE.ACESFilmicToneMapping,
+                toneMappingExposure: 1.05,
+              }}
+            >
+              <ambientLight intensity={0.95} />
+              <directionalLight position={[10, 14, -6]} intensity={2.4} />
               <Environment preset="city" />
-              <group rotation={[0, Math.PI, 0]}>
+
+              {/* Reflet miroir unique sous la voiture orienté de dos (feux arrière vers la caméra) */}
+              <group position={[0, -0.01, 0]} scale={[1, -1.0, 1]} rotation={[0, 0, 0]}>
+                <CarModel isReflection={true} />
+              </group>
+
+              {/* Voiture principale 3D vue de dos (poupe et feux stop bien visibles) */}
+              <group rotation={[0, 0, 0]}>
                 <CarModel />
               </group>
-              <ContactShadows position={[0, 0, 0]} opacity={0.5} scale={10} blur={2.5} far={4} />
+
+              {/* Ombre de contact douce et dégradée entre la voiture et son reflet */}
+              <ContactShadows position={[0, 0, 0]} opacity={0.35} scale={7.0} blur={2.2} far={2.0} color="#334155" />
             </Canvas>
           </div>
         </div>
@@ -181,8 +226,8 @@ export function Hero() {
             __html: `
             @media (max-width: 768px) {
               .car-container {
-                height: 250px !important;
-                bottom: 8% !important;
+                height: 320px !important;
+                bottom: 6% !important;
               }
             }
           `,
